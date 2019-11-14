@@ -1,6 +1,9 @@
 package com.example.books.model;
 
 
+import org.springframework.web.context.annotation.RequestScope;
+
+import javax.annotation.ManagedBean;
 import javax.persistence.*;
 import javax.transaction.UserTransaction;
 import java.util.List;
@@ -10,7 +13,8 @@ import java.util.List;
 
 public class Book {
 
-    @Id private String isbn;
+    @Id
+    private String isbn;
     private String title;
     private int year;
 
