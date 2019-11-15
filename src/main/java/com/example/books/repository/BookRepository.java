@@ -6,11 +6,13 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.ArrayList;
 import java.util.Optional;
 
-public interface BookRepository extends CrudRepository<Book, String > {
+public interface BookRepository extends CrudRepository<Book, Long > {
 
-    ArrayList<Book> findBooksByBookitemEquals(String title );
+    ArrayList<Book> findBooksBytitleEquals(String title );
 
-    ArrayList<Book> findByString(String isbn);
+   /*Book findById(long id);
 
-    void deleteByString(String isbn);
+    void deleteById(long id);*/
+
+
 }

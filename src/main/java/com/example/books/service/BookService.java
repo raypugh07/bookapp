@@ -8,11 +8,13 @@ public interface BookService {
 
     ArrayList<Book> findAll();
 
+   // Book findById(long id);
+
    // ArrayList<Book> findByString(String isbn);
 
     Book save (Book book);
 
-    ArrayList<Book> update(Book book, String isbn);
+    Book update(Book book, long id);
 
-    void delete(String isbn);
+    void delete(long id);
 }

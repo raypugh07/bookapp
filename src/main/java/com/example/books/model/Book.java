@@ -14,6 +14,7 @@ import java.util.List;
 public class Book {
 
     @Id
+    private long id;
     private String isbn;
     private String title;
     private int year;
@@ -21,11 +22,20 @@ public class Book {
     public Book() {
     }
 
-    public Book(String isbn, String title, int year) {
+    public Book(String isbn, String title, int year, long id) {
         this.isbn = isbn;
         this.title = title;
         this.year = year;
+        this.id=id;
     }
+
+    public long getId(){
+        return id;
+    }
+    public void setId(long id){
+        this.id=id;
+    }
+
 
     public String getisbn() {
         return isbn;
@@ -53,10 +63,10 @@ public class Book {
 
     // crud data management methods
 
-    public static void add(EntityManager em, UserTransaction ut,
-                           String isbn, String title, int year) throws Exception {
+  /*  public static void add(EntityManager em, UserTransaction ut,
+                           String isbn, String title, int year, long id) throws Exception {
         ut.begin();
-        Book book = new Book( isbn, title, year);
+        Book book = new Book( isbn, title, year,id);
         em.persist(book);
         ut.commit();
     }
@@ -85,6 +95,7 @@ public class Book {
         em.remove( book);
         ut.commit();
     }
+
     public static void clearData( EntityManager em,
                                   UserTransaction ut) throws Exception {
         ut.begin();
@@ -92,17 +103,18 @@ public class Book {
         deleteStatement.executeUpdate();
         ut.commit();
     }
+
     public static void createTestData( EntityManager em,
                                        UserTransaction ut) throws Exception {
         Book book = null;
-        Book.clearData( em, ut);  // first clear the books table
+       // Book.clearData( em, ut);  // first clear the books table
         ut.begin();
-        book = new Book("006251587X","Weaving the Web", 2000);
+        book = new Book("006251587X","Weaving the Web", 2000,1);
         em.persist( book);
-        book = new Book("0465026567","Gödel, Escher, Bach", 1999);
+        book = new Book("0465026567","Gödel, Escher, Bach", 1999,2);
         em.persist( book);
-        book = new Book("0465030793","I Am A Strange Loop", 2008);
+        book = new Book("0465030793","I Am A Strange Loop", 2008,3);
         em.persist( book);
         ut.commit();
-    }
+    }*/
 }

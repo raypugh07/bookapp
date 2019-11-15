@@ -37,24 +37,32 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public ArrayList<Book> update(Book book, String isbn) {
+    public Book update(Book book, long id) {
 
-        ArrayList<Book> currentBook = bookrepos.findByString(isbn);
+        Book currentBook = bookrepos.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(Long.toString(id)));
 
-        return currentBook;
+        if (book.getTitle()!= null) {
 
+            currentBook.setTitle(book.getTitle());
+        }
+        return bookrepos.save(currentBook);
     }
 
     @Transactional
     @Override
-    public void delete(String isbn) throws EntityNotFoundException {
+    public void delete(long id) throws EntityNotFoundException {
 
-        if (bookrepos.findByString(isbn)){
-            bookrepos.deleteByString(isbn);
+        if (bookrepos.findById(id).isPresent()){
+
+            bookrepos.deleteById(id);
+
         }else {
-            throw new EntityNotFoundException(isbn);
+
+            throw new EntityNotFoundException(Long.toString(id));
         }
     }
+
 
 
 }
